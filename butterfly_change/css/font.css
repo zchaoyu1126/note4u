@@ -1,0 +1,10 @@
+@font-face{
+    font-family: 'JetBrains Mono';
+    font-display: swap;
+    src: url('/butterfly_change/fonts/JetBrainsMono-Regular.ttf') format("truetype");
+}
+@font-face{
+    font-family: 'HarmonyOS Sans SC';
+    font-display: swap;
+    src: url('/butterfly_change/fonts/HarmonyOS_Sans_SC_Regular.ttf') format("truetype");
+}
