@@ -15,6 +15,8 @@ cover: http://img.note4u.top/base/cloud_native_cover.jpg
 
 [云计算与云原生基本概念](http://note4u.top/post/6328194b.html)
 [虚拟机与容器、Docker与K8S常见混淆点梳理](http://note4u.top/post/757d0b1c.html)
+[Docker 命令](http://note4u.top/post/f0295783.html)
+[构建 Docker 镜像](http://note4u.top/post/78184262.html)
 
 ## To do list
 Flink:  
