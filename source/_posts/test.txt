@@ -1,0 +1,225 @@
+容器运行时应该尽量保持容器存储层不发生写操作，对于数据库类需要保存动态数据的应用，其数据库文件应该保存于卷(volume)中。为了防止运行时用户忘记将动态文件所保存目录挂载为卷，在 Dockerfile 中，我们可以事先指定某些目录挂载为匿名卷，这样在运行时如果用户不指定挂载，其应用也可以正常运行，不会向容器存储层写入大量数据。
+
+VOLUME /data
+这里的 /data 目录就会在容器运行时自动挂载为匿名卷，任何向 /data 中写入的信息都不会记录进容器存储层，从而保证了容器存储层的无状态化。当然，运行容器时可以覆盖这个挂载设置。比如：
+
+$ docker run -d -v mydata:/data xxxx
+在这行命令中，就使用了 mydata 这个命名卷挂载到了 /data 这个位置，替代了 Dockerfile 中定义的匿名卷的挂载配置。
+
+
+## WORKDIR
+
+WORKDIR指令用来在从镜像创建一个容器时，在容器内部设置一个目录
+
+ENTRYPOINT和CMD指定的程序会在这个目录下执行
+
+可以使用该指令为Dockerfile中后续的一系列指令设置工作目录
+
+也可以为最终的容器设置工作目录
+
+```docker
+WORKDIR /opt/webapp/db
+RUN bundle install
+WORDDIR /opt/webapp
+ENTRYPOINT [ "rackup" ]
+```
+
+可以通过-w标志，在运行时覆盖工作目录
+
+```docker
+docker run -t -i -w /var/log ubuntu pwd
+/var/log
+```
+
+## ADD
+
+ADD指令用来将构建环境下的文件和目录复制到镜像中。
+
+```docker
+ADD software.lic /opt/application/software.lic
+```
+
+指向源文件的位置参数可以是一个URL，或者构建上下文或环境文件名或者目录
+
+不能对构建目录或上下文之外的文件进行ADD操作
+
+/结尾目录，否则认为是文件
+
+ADD指令会使得构建缓存无效
+
+通过ADD指令向镜像中添加一个文件或者目录，那么这将使Dockerfile中的后续指令都不能继续使用之前的构建缓存。
+
+
+
+## LABEL
+
+```docker
+LABEL version="1.0"
+LABEL location="New York" type="Data Center" role="Web Server"
+```
+
+docker inspect 查看
+
+`networks   # 定义 networks 信息`
+
+`driver    # 指定网络模式, 大多数情况下, 它 bridge 于单个主机和 overlay Swarm 上`
+
+`bridge    # Docker 默认使用 bridge 连接单个主机上的网络`
+
+`overlay    # overlay 驱动程序创建一个跨多个节点命名的网络`
+
+`host     # 共享主机网络名称空间(等同于 docker run --net=host)`
+
+`none     # 等同于 docker run --net=none`
+
+`driver_opts   # v3.2以上版本, 传递给驱动程序的参数, 这些参数取决于驱动程序`
+
+`attachable   # driver 为 overlay 时使用, 如果设置为 true 则除了服务之外，独立容器也可以附加到该网络; 如果独立容器连接到该网络，则它可以与其他 Docker 守护进程连接到的该网络的服务和独立容器进行通信`
+
+`ipam     # 自定义 IPAM 配置. 这是一个具有多个属性的对象, 每个属性都是可选的`
+
+`driver    # IPAM 驱动程序, bridge 或者 default`
+
+`config    # 配置项`
+
+`subnet    # CIDR格式的子网，表示该网络的网段`
+
+`external    # 外部网络, 如果设置为 true 则 docker-compose up 不会尝试创建它, 如果它不存在则引发错误`
+
+`name     # v3.5 以上版本, 为此网络设置名称`
+
+`文件格式示例：`
+
+`version: "3"`
+
+`services:`
+
+`redis:`
+
+`image: redis:alpine`
+
+`ports:`
+
+`- "6379"`
+
+`networks:`
+
+`- frontend`
+
+`deploy:`
+
+`replicas: 2`
+
+`update_config:`
+
+`parallelism: 2`
+
+`delay: 10s`
+
+`restart_policy:`
+
+`condition: on-failure`
+
+`db:`
+
+`image: postgres:9.4`
+
+`volumes:`
+
+`- db-data:/var/lib/postgresql/data`
+
+`networks:`
+
+`- backend`
+
+`deploy:`
+
+`placement:`
+
+`constraints: [node.role == manager]`
+
+
+
+docker build -t kubia .
+
+docker run --name kubia-container -p 8080:8080 -d kubia
+
+基于kubia镜像创建一个叫kubia-container的新容器。-d 后台运行，-p 指定端口映射
+
+![20230415154629](http://img.note4u.top/article/20230415154629.png)
+
+返回docker容器的ID
+
+docker ps
+
+![20230415154727](http://img.note4u.top/article/20230415154727.png)
+
+docker stop kubia-container
+
+docker rm kubia-container
+
+docker exec -it kubia-container bash
+
+bash 必须要
+
+docker inspect kubia-container
+
+
+docker login
+
+zchaoyu1126
+
+docker push zchaoyu1126/kubia
+
+
+
+
+
+
+### EXPOSE
+格式为 EXPOSE <端口1> [<端口2>...]。
+
+EXPOSE 指令是声明容器运行时提供服务的端口，这只是一个声明，在容器运行时并不会因为这个声明应用就会开启这个端口的服务。在 Dockerfile 中写入这样的声明有两个好处，一个是帮助镜像使用者理解这个镜像服务的守护端口，以方便配置映射；另一个用处则是在运行时使用随机端口映射时，也就是 docker run -P 时，会自动随机映射 EXPOSE 的端口。
+
+要将 EXPOSE 和在运行时使用 -p <宿主端口>:<容器端口> 区分开来。-p，是映射宿主端口和容器端口，换句话说，就是将容器的对应端口服务公开给外界访问，而 EXPOSE 仅仅是声明容器打算使用什么端口而已，并不会自动在宿主进行端口映射。
+
+### WORKDIR
+
+格式为 WORKDIR <工作目录路径>。
+
+使用 WORKDIR 指令可以来指定工作目录（或者称为当前目录），以后各层的当前目录就被改为指定的目录，如该目录不存在，WORKDIR 会帮你建立目录。
+
+之前提到一些初学者常犯的错误是把 Dockerfile 等同于 Shell 脚本来书写，这种错误的理解还可能会导致出现下面这样的错误：
+
+RUN cd /app
+RUN echo "hello" > world.txt
+如果将这个 Dockerfile 进行构建镜像运行后，会发现找不到 /app/world.txt 文件，或者其内容不是 hello。原因其实很简单，在 Shell 中，连续两行是同一个进程执行环境，因此前一个命令修改的内存状态，会直接影响后一个命令；而在 Dockerfile 中，这两行 RUN 命令的执行环境根本不同，是两个完全不同的容器。这就是对 Dockerfile 构建分层存储的概念不了解所导致的错误。
+
+之前说过每一个 RUN 都是启动一个容器、执行命令、然后提交存储层文件变更。第一层 RUN cd /app 的执行仅仅是当前进程的工作目录变更，一个内存上的变化而已，其结果不会造成任何文件变更。而到第二层的时候，启动的是一个全新的容器，跟第一层的容器更完全没关系，自然不可能继承前一层构建过程中的内存变化。
+
+因此如果需要改变以后各层的工作目录的位置，那么应该使用 WORKDIR 指令。
+
+WORKDIR /app
+
+RUN echo "hello" > world.txt
+如果你的 WORKDIR 指令使用的相对路径，那么所切换的路径与之前的 WORKDIR 有关：
+
+WORKDIR /a
+WORKDIR b
+WORKDIR c
+
+RUN pwd
+RUN pwd 的工作目录为 /a/b/c。
+
+~~## 使用 docker commit 创建镜像~~
+
+~~docker run -it ubuntu /bin/bash~~
+apt-get -yqq update
+apt-get -y install apache2
+# 输入 exit 退出容器
+docker ps -l -q                 
+docker commit -m "A new custom image" -a "zchaoyu" 477973e96f4b zchaoyu1126/apache2:webserver
+docker inspect zchaoyu1126/apache2
+
+
+~~创建 Docker 镜像的方式有两种，一种是使用 docker commit 命令，另一种则利用 docker build 和 Dockerfile 文件。~~ 
