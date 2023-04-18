@@ -12,14 +12,18 @@ cover: http://img.note4u.top/base/cloud_native_cover.jpg
 希望能在日后工作的实践中，逐渐加深理解，并对本文进行完善与补充。
 
 ## Accomplished
+[001 云计算与云原生基本概念](http://note4u.top/post/6328194b.html)
+[002 虚拟机与容器、Docker与K8S常见混淆点梳理](http://note4u.top/post/757d0b1c.html)
+[004 Docker 命令](http://note4u.top/post/f0295783.html)
+[005使用 Dockerfile 构建镜像](http://note4u.top/post/78184262.html)
 
-[云计算与云原生基本概念](http://note4u.top/post/6328194b.html)
-[虚拟机与容器、Docker与K8S常见混淆点梳理](http://note4u.top/post/757d0b1c.html)
-[Docker 命令](http://note4u.top/post/f0295783.html)
-[使用 Dockerfile 构建镜像](http://note4u.top/post/78184262.html)
-[使用 minikube 搭建 k8s 环境](http://note4u.top/post/bcb946aa.html)
-[kubectl 命令]()
-[什么是 pod]()
+## In hand
+- [003 Docker 安装与入门]
+- [006 使用 minikube 搭建 k8s 环境]
+- [007 kubectl 命令]
+- [008 K8S 组件与概念]
+  - kubectl、Master、Node、API Server、Scheduler、etcd、Proxy、CoreDNS、Dashboard
+  - pod、ReplicationController、ReplicaSet、Deployment、Service、Ingress、ConfigMap、Secrets
 
 ## To do list
 Flink:  
@@ -27,15 +31,15 @@ Flink:
 - 在Flink官网上购买一个试用的集群(费用较高，仅首月有优惠），熟悉基本的sql+datastream作业编写，配置调优，作业运维流程，会写作业，会排查简单的作业问题（延时，Fo)。
   
 K8S:
-- 了解k8s的设计理念，理解包括申明式API、控制机制、cni/csi/cri等。
+- ~~了解k8s的设计理念，理解包括申明式API、控制机制、cni/csi/cri等~~。
 - 学习云原生架构概念，包括Serverless、OAM等。
-- 通读《k8s in action》+k8s官方文档，深入学习 k8s调度+资源管理 内容。
-- 基于docker熟悉容器虚拟化技术，深入学习 镜像+unionFS 相关知识。
+- 通读《k8s in action》+ k8s 官方文档，深入学习 k8s 调度+资源管理 内容。
+- 基于 docker 熟悉容器虚拟化技术，深入学习 镜像 + unionFS 相关知识。
 
 Go:
-- 实现一个简易的重调度，并基于docker熟悉构建，打包，发布，部署流程（minikube）方法通过 minikube 环境，和 client-go 客户端的学习，自己搭建一套怎么通过「client-go」来获取 k8s resource（比如 pod, node..）的信息，并且根据自己的简单决策算法（比如 podName = "shouldEvict"），对 pod 进行操作（比如 eviction） 
+- 实现一个简易的重调度，并基于 docker 熟悉构建，打包，发布，部署流程（minikube）方法通过 minikube 环境，和 client-go 客户端的学习，自己搭建一套怎么通过「client-go」来获取 k8s resource（比如 pod, node..）的信息，并且根据自己的简单决策算法（比如 podName = "shouldEvict"），对 pod 进行操作（比如 eviction） 
   - 标准基本标准： 「能够使用 client-go，获得 pod, node 信息，根据这些信息，设置一些简单的判断条件，最后调用 k8s v1/core eviction 的原生 api，对 pod 进行驱逐」
-  - 高阶标准： 「能自己写 informer ，或者 reflector（list & watch)，获取 自定义的 CR 信息，根据这些信息，设置一些简单的判断条件进行驱逐」
+  - 高阶标准： 「能自己写 informer ，或者 reflector（list & watch），获取 自定义的 CR 信息，根据这些信息，设置一些简单的判断条件进行驱逐」
 
 SRE业务场景：
-- 学习FFA中关于inspector的介绍。
+- 学习 FFA 中关于 inspector 的介绍。

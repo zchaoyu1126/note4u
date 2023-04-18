@@ -6,6 +6,14 @@ date: 2023-02-01 21:26:08
 tags:
 cover: http://img.note4u.top/base/dailylog_cover.jpg
 ---
+## 常用查询网址
+markdown语法：https://markdown.com.cn/basic-syntax/
+butterfly标签：https://butterfly.js.org/posts/2df239ce/
+
+## 2023.04.18
+- 完成[使用Docker构建镜像](http://note4u.top/post/78184262.html)
+
+
 ## 2023.02.13
 - latex：三线表https://blog.csdn.net/weixin_44044161/article/details/116739166
 - https://blog.csdn.net/TH_guan/article/details/124878398
