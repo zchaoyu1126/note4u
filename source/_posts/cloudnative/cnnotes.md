@@ -15,7 +15,8 @@ cover: http://img.note4u.top/base/cloud_native_cover.jpg
 [001 云计算与云原生基本概念](http://note4u.top/post/6328194b.html)
 [002 虚拟机与容器、Docker与K8S常见混淆点梳理](http://note4u.top/post/757d0b1c.html)
 [004 Docker 命令](http://note4u.top/post/f0295783.html)
-[005使用 Dockerfile 构建镜像](http://note4u.top/post/78184262.html)
+[005 使用 Dockerfile 构建镜像](http://note4u.top/post/78184262.html)
+[009 《K8S in Action》第三章笔记](http://note4u.top/post/37731fc2.html)
 
 ## In hand
 - [003 Docker 安装与入门]
@@ -24,6 +25,9 @@ cover: http://img.note4u.top/base/cloud_native_cover.jpg
 - [008 K8S 组件与概念]
   - kubectl、Master、Node、API Server、Scheduler、etcd、Proxy、CoreDNS、Dashboard
   - pod、ReplicationController、ReplicaSet、Deployment、Service、Ingress、ConfigMap、Secrets
+- [010 《K8S in Action》第四章笔记]
+- [011 《K8S in Action》第五章笔记]
+- [012 《K8s in Action》第六章笔记]
 
 ## To do list
 Flink:  
