@@ -25,7 +25,7 @@ cover: http://img.note4u.top/base/cloud_native_cover.jpg
 - [008 K8S 组件与概念]
   - kubectl、Master、Node、API Server、Scheduler、etcd、Proxy、CoreDNS、Dashboard
   - pod、ReplicationController、ReplicaSet、Deployment、Service、Ingress、ConfigMap、Secrets
-- [010 《K8S in Action》第四章笔记]
+- [010 《K8S in Action》第四章笔记](http://localhost:4000/post/90f3ebae.html)
 - [011 《K8S in Action》第五章笔记]
 - [012 《K8s in Action》第六章笔记]
 
