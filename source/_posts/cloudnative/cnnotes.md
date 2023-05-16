@@ -11,25 +11,32 @@ cover: http://img.note4u.top/base/cloud_native_cover.jpg
 本系列写于第一次接触云计算与云原生，在此之前也没有参与过一个软件工程的全生命周期，对软件的部署、交付、运维等这一块了解不多。此外，之前在校开发的一些应用都属于单体架构，对基于分布式、微服务等应用的了解不够深入。
 希望能在日后工作的实践中，逐渐加深理解，并对本文进行完善与补充。
 
-## Accomplished
+## 重要参考
+https://kubernetes.io/zh-cn/docs/
+
+## 已完成
 [001 云计算与云原生基本概念](http://note4u.top/post/6328194b.html)
 [002 虚拟机与容器、Docker与K8S常见混淆点梳理](http://note4u.top/post/757d0b1c.html)
 [004 Docker 命令](http://note4u.top/post/f0295783.html)
 [005 使用 Dockerfile 构建镜像](http://note4u.top/post/78184262.html)
 [009 《K8S in Action》第三章笔记](http://note4u.top/post/37731fc2.html)
+[010 《K8S in Action》第四章笔记](http://note4u.top/post/90f3ebae.html)
 
-## In hand
+## 进行中
 - [003 Docker 安装与入门]
 - [006 使用 minikube 搭建 k8s 环境]
 - [007 kubectl 命令]
 - [008 K8S 组件与概念]
   - kubectl、Master、Node、API Server、Scheduler、etcd、Proxy、CoreDNS、Dashboard
   - pod、ReplicationController、ReplicaSet、Deployment、Service、Ingress、ConfigMap、Secrets
-- [010 《K8S in Action》第四章笔记](http://localhost:4000/post/90f3ebae.html)
-- [011 《K8S in Action》第五章笔记]
-- [012 《K8s in Action》第六章笔记]
+- [010 client-go minikube]
+- [012 《K8S in Action》第五章笔记]
+- [013 《K8S in Action》第六章笔记]
+- [014 访问 k8s 的 api、GVR、GVK等]
+- [015 《K8S in Action》第九章笔记]
 
-## To do list
+
+## 任务列表
 Flink:  
 - 掌握Flink的核心概念，包括WaterMark/State/Window/ExecutionGraph等，熟悉主要流程，包括 资源配置/作业拓扑/作业启动/checkpoint生成/Failover流程 等。
 - 在Flink官网上购买一个试用的集群(费用较高，仅首月有优惠），熟悉基本的sql+datastream作业编写，配置调优，作业运维流程，会写作业，会排查简单的作业问题（延时，Fo)。
@@ -48,9 +55,7 @@ Go:
 SRE业务场景：
 - 学习 FFA 中关于 inspector 的介绍。
 
-
-
-## Reports
+## 周期性梳理
 
 [2022.12.26-2023.01.01](http://note4u.top/post/69cd87f9.html)
 [2023.01.02-2023.01.15](http://note4u.top/post/f0c4d643.html)

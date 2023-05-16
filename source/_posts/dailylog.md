@@ -7,8 +7,9 @@ tags:
 cover: http://img.note4u.top/base/dailylog_cover.jpg
 ---
 
-## 2023.05.08
-
+## 2023.05.16
+- 几乎完成第四章笔记
+- 《Kubenetes Opeartor 开发进阶》
 
 ## 2023.05.04-2023.05.07
 - 完成GSS文档
